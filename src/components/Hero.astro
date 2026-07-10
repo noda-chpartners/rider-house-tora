@@ -1,0 +1,27 @@
+---
+const headlineTop = Array.from('走った先に、');
+const headlineBottom = Array.from('帰れる場所を。');
+---
+
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero__media-wrap">
+    <img class="hero__media js-hero-image" src="/images/hero.png" alt="緑の外壁が印象的な佐久ライダーハウス虎の穴とバイク" width="750" height="562" fetchpriority="high" />
+  </div>
+  <div class="hero__shade"></div>
+  <div class="hero__content container">
+    <p class="hero__place js-hero-copy">NAGANO · SAKU</p>
+    <h1 class="hero__title" id="hero-title" aria-label="走った先に、帰れる場所を。">
+      <span class="hero__title-line" aria-hidden="true">
+        {headlineTop.map((character) => <span class="hero__character">{character}</span>)}
+      </span>
+      <span class="hero__title-line hero__title-line--indent" aria-hidden="true">
+        {headlineBottom.map((character) => <span class="hero__character">{character}</span>)}
+      </span>
+    </h1>
+    <div class="hero__bottom js-hero-copy">
+      <p class="hero__lead">佐久の森に佇む<br />旅人のための小さな宿</p>
+      <a class="button button--light" href="#stay"><span class="button__label">宿泊プランを見る</span><span class="button__arrow" aria-hidden="true">↘</span></a>
+    </div>
+  </div>
+  <div class="hero__scroll js-hero-copy" aria-hidden="true"><span class="hero__scroll-line"></span><span class="hero__scroll-text">SCROLL</span></div>
+</section>

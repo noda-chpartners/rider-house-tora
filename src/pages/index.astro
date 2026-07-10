@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import StayPlans from '../components/StayPlans.astro';
+import Gallery from '../components/Gallery.astro';
+import Info from '../components/Info.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="佐久ライダーハウス虎の穴｜長野県佐久市の宿泊施設" description="長野県佐久市の佐久ライダーハウス虎の穴。素泊まり・ドミトリー、布団なし、キャンプから選べます。ご予約は電話で承ります。">
+  <div class="intro" aria-hidden="true"><img class="intro__logo" src="/images/logo.png" alt="" width="400" height="400" /></div>
+  <Header />
+  <main class="main" id="main">
+    <Hero />
+    <About />
+    <StayPlans />
+    <Gallery />
+    <Info />
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const intro = document.querySelector('.intro');
+
+  if (reducedMotion) {
+    intro?.remove();
+  } else {
+    document.body.classList.add('is-loading');
+    const loadTimeline = gsap.timeline({
+      defaults: { ease: 'power3.out' },
+      onComplete: () => {
+        document.body.classList.remove('is-loading');
+        intro?.remove();
+      },
+    });
+
+    loadTimeline
+      .fromTo('.intro__logo', { opacity: 0, scale: 0.82, rotate: -8 }, { opacity: 1, scale: 1, rotate: 0, duration: 0.75 })
+      .to('.intro__logo', { opacity: 0, scale: 1.08, duration: 0.38, delay: 0.18 })
+      .to('.intro', { yPercent: -100, duration: 0.9, ease: 'expo.inOut' }, '-=0.05')
+      .from('.js-hero-image', { scale: 1.18, duration: 1.6, ease: 'power2.out' }, '-=0.55')
+      .from('.hero__character', { yPercent: 115, rotate: 4, opacity: 0, stagger: 0.045, duration: 0.75 }, '-=1.2')
+      .from('.js-hero-copy', { y: 24, opacity: 0, stagger: 0.1, duration: 0.7 }, '-=0.7')
+      .from('.js-header', { y: -30, opacity: 0, duration: 0.7 }, '-=0.65');
+
+    gsap.utils.toArray<HTMLElement>('.js-reveal').forEach((element) => {
+      gsap.from(element, {
+        scrollTrigger: { trigger: element, start: 'top 82%', once: true },
+        y: 70,
+        opacity: 0,
+        duration: 1.05,
+        ease: 'power3.out',
+      });
+    });
+
+    gsap.from('.js-plan-card', {
+      scrollTrigger: { trigger: '.stay__plans', start: 'top 78%', once: true },
+      y: 80,
+      opacity: 0,
+      rotateX: -8,
+      stagger: 0.13,
+      duration: 1,
+      ease: 'power3.out',
+    });
+
+    gsap.utils.toArray<HTMLElement>('.js-parallax').forEach((image) => {
+      gsap.fromTo(image, { yPercent: -7 }, {
+        yPercent: 7,
+        ease: 'none',
+        scrollTrigger: { trigger: image.closest('.js-parallax-wrap'), start: 'top bottom', end: 'bottom top', scrub: 0.8 },
+      });
+    });
+
+    const rail = document.querySelector<HTMLElement>('.js-gallery-rail');
+    const gallery = document.querySelector<HTMLElement>('.gallery');
+
+    if (rail && gallery && window.matchMedia('(min-width: 768px)').matches) {
+      const getShift = () => Math.min(0, window.innerWidth - rail.scrollWidth - 80);
+      const getTravel = () => Math.max(window.innerWidth * 0.75, Math.abs(getShift()));
+
+      const galleryTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: gallery,
+          start: 'top top',
+          end: () => `+=${getTravel() + window.innerHeight * 0.45}`,
+          scrub: 1,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Hold while the full first frame of photos is visible, then slide.
+      galleryTimeline
+        .to({}, { duration: 0.5 })
+        .to(rail, { x: getShift, duration: 1, ease: 'none' });
+
+      rail.querySelectorAll('img').forEach((image) => {
+        if (!image.complete) {
+          image.addEventListener('load', () => ScrollTrigger.refresh(), { once: true });
+        }
+      });
+    }
+  }
+
+  const header = document.querySelector('.header');
+  const mobileCall = document.querySelector('.mobile-call');
+  const hero = document.querySelector('.hero');
+
+  window.addEventListener('scroll', () => header?.classList.toggle('header--scrolled', window.scrollY > 80), { passive: true });
+
+  if (mobileCall && hero && window.matchMedia('(max-width: 767px)').matches) {
+    const syncMobileCall = () => {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      const overlapping = heroBottom > 72;
+      mobileCall.classList.toggle('mobile-call--hidden', overlapping);
+    };
+
+    syncMobileCall();
+    window.addEventListener('scroll', syncMobileCall, { passive: true });
+    window.addEventListener('resize', syncMobileCall);
+  }
+</script>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'LodgingBusiness',
+  name: '佐久ライダーハウス虎の穴',
+  telephone: '+81-90-8517-4487',
+  address: {
+    '@type': 'PostalAddress',
+    postalCode: '384-2203',
+    addressRegion: '長野県',
+    addressLocality: '佐久市',
+    streetAddress: '布施3841−337',
+    addressCountry: 'JP',
+  },
+  sameAs: ['https://www.instagram.com/tora6772/', 'https://riderhousetoranoana.jimdosite.com/'],
+})} />

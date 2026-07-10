@@ -1,0 +1,31 @@
+---
+const info = [
+  { label: '施設名', value: '佐久ライダーハウス虎の穴' },
+  { label: '住所', value: '〒384-2203 長野県佐久市布施3841−337' },
+  { label: 'アクセス', value: '佐久ICから車で30分' },
+  { label: '客室数', value: '2部屋' },
+  { label: 'チェックイン', value: '16時〜' },
+  { label: 'チェックアウト', value: '10時' },
+  { label: '定休日', value: '不定休' },
+];
+---
+
+<section class="info section-shell" id="info" aria-labelledby="info-title">
+  <div class="info__inner container">
+    <div class="info__visual js-reveal">
+      <div class="info__image-wrap js-parallax-wrap"><img class="info__image js-parallax" src="/images/hero02.png" alt="佐久ライダーハウス虎の穴の外観" width="750" height="562" loading="lazy" /></div>
+      <p class="info__image-note">SAKU RIDER HOUSE<br />TORA NO ANA</p>
+    </div>
+    <div class="info__content js-reveal">
+      <p class="eyebrow"><span class="eyebrow__number">04</span><span class="eyebrow__label">INFORMATION</span></p>
+      <h2 class="section-title" id="info-title">施設案内</h2>
+      <dl class="info__list">
+        {info.map((item) => <div class="info__row"><dt class="info__label">{item.label}</dt><dd class="info__value">{item.value}</dd></div>)}
+      </dl>
+      <div class="info__actions">
+        <a class="button button--dark" href="https://maps.google.com/?q=%E3%80%92384-2203+%E9%95%B7%E9%87%8E%E7%9C%8C%E4%BD%90%E4%B9%85%E5%B8%82%E5%B8%83%E6%96%BD3841-337" target="_blank" rel="noreferrer"><span class="button__label">Google Maps</span><span class="button__arrow" aria-hidden="true">↗</span></a>
+        <a class="info__text-link" href="https://riderhousetoranoana.jimdosite.com/" target="_blank" rel="noreferrer">既存ホームページを見る <span class="info__text-arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>

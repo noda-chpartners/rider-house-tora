@@ -1,0 +1,32 @@
+---
+const plans = [
+  { type: 'DORMITORY', name: '素泊まり・ドミトリー', price: '3,500', unit: '円' },
+  { type: 'NO FUTON', name: '素泊まり・布団なし', price: '1,500', unit: '円' },
+  { type: 'CAMP', name: 'キャンプ', price: '1,000', unit: '円' },
+];
+---
+
+<section class="stay section-shell" id="stay" aria-labelledby="stay-title">
+  <div class="stay__inner container">
+    <div class="stay__heading js-reveal">
+      <p class="eyebrow eyebrow--light"><span class="eyebrow__number">02</span><span class="eyebrow__label">STAY</span></p>
+      <h2 class="section-title section-title--light" id="stay-title">旅のスタイルで<br />選べる、<span class="section-title__accent section-title__accent--orange">3つの泊まり方。</span></h2>
+      <p class="stay__note">すべて素泊まりの料金です。ご予約はお電話で承ります。</p>
+    </div>
+    <div class="stay__plans">
+      {plans.map((plan, index) => (
+        <article class="plan-card js-plan-card">
+          <div class="plan-card__top"><span class="plan-card__index">0{index + 1}</span><span class="plan-card__type">{plan.type}</span></div>
+          <h3 class="plan-card__name">{plan.name}</h3>
+          <div class="plan-card__price"><span class="plan-card__yen">¥</span><span class="plan-card__amount">{plan.price}</span><span class="plan-card__unit">{plan.unit}</span></div>
+          <a class="plan-card__link" href="tel:09085174487"><span class="plan-card__link-label">電話で予約する</span><span class="plan-card__link-arrow" aria-hidden="true">↗</span></a>
+        </article>
+      ))}
+    </div>
+    <div class="stay__schedule js-reveal">
+      <div class="stay__schedule-item"><span class="stay__schedule-label">CHECK IN</span><span class="stay__schedule-value">16:00<span class="stay__schedule-small">〜</span></span></div>
+      <span class="stay__schedule-road" aria-hidden="true"></span>
+      <div class="stay__schedule-item stay__schedule-item--right"><span class="stay__schedule-label">CHECK OUT</span><span class="stay__schedule-value">10:00</span></div>
+    </div>
+  </div>
+</section>

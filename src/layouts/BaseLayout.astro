@@ -1,0 +1,32 @@
+---
+import '../styles/global.css';
+import '../styles/page.scss';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ja" class="site-root">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#173d31" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/ogp.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <title>{title}</title>
+  </head>
+  <body class="site-body">
+    <a class="skip-link" href="#main">本文へ移動</a>
+    <slot />
+  </body>
+</html>

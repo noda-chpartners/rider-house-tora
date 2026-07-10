@@ -1,0 +1,23 @@
+---
+const navigation = [
+  { href: '#about', label: '虎の穴について' },
+  { href: '#stay', label: '宿泊料金' },
+  { href: '#gallery', label: '写真' },
+  { href: '#info', label: '施設案内' },
+];
+---
+
+<header class="header js-header">
+  <div class="header__inner">
+    <a class="header__brand" href="#top" aria-label="ページ上部へ戻る">
+      <img class="header__logo" src="/images/logo.png" alt="佐久ライダーハウス虎の穴" width="400" height="400" />
+    </a>
+    <nav class="header__nav" aria-label="メインナビゲーション">
+      {navigation.map((item) => <a class="header__nav-link" href={item.href}>{item.label}</a>)}
+    </nav>
+    <a class="header__call" href="tel:09085174487">
+      <span class="header__call-small">予約は電話で</span>
+      <span class="header__call-number">090-8517-4487</span>
+    </a>
+  </div>
+</header>
