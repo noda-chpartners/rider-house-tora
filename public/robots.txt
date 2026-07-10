@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://riderhousetoranoana.jimdosite.com/sitemap.xml

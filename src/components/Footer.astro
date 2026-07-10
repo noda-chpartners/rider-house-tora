@@ -1,3 +1,8 @@
+---
+import { Image } from 'astro:assets';
+import logoImage from '../assets/images/logo.png';
+---
+
 <footer class="footer">
   <div class="footer__cta container js-reveal">
     <p class="footer__kicker">RESERVATION</p>
@@ -6,7 +11,19 @@
     <a class="footer__phone" href="tel:09085174487"><span class="footer__phone-small">TEL</span><span class="footer__phone-number">090-8517-4487</span><span class="footer__phone-arrow" aria-hidden="true">↗</span></a>
   </div>
   <div class="footer__bottom container">
-    <a class="footer__brand" href="#top"><img class="footer__logo" src="/images/logo.png" alt="佐久ライダーハウス虎の穴" width="400" height="400" loading="lazy" /></a>
+    <a class="footer__brand" href="#top">
+      <Image
+        class="footer__logo"
+        src={logoImage}
+        alt="佐久ライダーハウス虎の穴"
+        width={180}
+        height={180}
+        format="webp"
+        quality={85}
+        loading="lazy"
+        decoding="async"
+      />
+    </a>
     <div class="footer__links">
       <a class="footer__link" href="https://www.instagram.com/tora6772/" target="_blank" rel="noreferrer">INSTAGRAM ↗</a>
       <a class="footer__link" href="https://riderhousetoranoana.jimdosite.com/" target="_blank" rel="noreferrer">WEBSITE ↗</a>

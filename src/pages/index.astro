@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
@@ -7,10 +8,23 @@ import StayPlans from '../components/StayPlans.astro';
 import Gallery from '../components/Gallery.astro';
 import Info from '../components/Info.astro';
 import Footer from '../components/Footer.astro';
+import logoImage from '../assets/images/logo.png';
 ---
 
 <BaseLayout title="佐久ライダーハウス虎の穴｜長野県佐久市の宿泊施設" description="長野県佐久市の佐久ライダーハウス虎の穴。素泊まり・ドミトリー、布団なし、キャンプから選べます。ご予約は電話で承ります。">
-  <div class="intro" aria-hidden="true"><img class="intro__logo" src="/images/logo.png" alt="" width="400" height="400" /></div>
+  <div class="intro" aria-hidden="true">
+    <Image
+      class="intro__logo"
+      src={logoImage}
+      alt=""
+      width={460}
+      height={460}
+      format="webp"
+      quality={85}
+      loading="eager"
+      decoding="async"
+    />
+  </div>
   <Header />
   <main class="main" id="main">
     <Hero />
@@ -134,8 +148,14 @@ import Footer from '../components/Footer.astro';
 <script type="application/ld+json" set:html={JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'LodgingBusiness',
+  '@id': 'https://riderhousetoranoana.jimdosite.com/#business',
   name: '佐久ライダーハウス虎の穴',
+  alternateName: 'SAKU RIDER HOUSE TORA NO ANA',
+  description: '長野県佐久市の佐久ライダーハウス虎の穴。素泊まり・ドミトリー、布団なし、キャンプから選べます。ご予約は電話で承ります。',
+  url: 'https://riderhousetoranoana.jimdosite.com/',
   telephone: '+81-90-8517-4487',
+  image: 'https://riderhousetoranoana.jimdosite.com/images/ogp.png',
+  priceRange: '¥',
   address: {
     '@type': 'PostalAddress',
     postalCode: '384-2203',
@@ -144,5 +164,11 @@ import Footer from '../components/Footer.astro';
     streetAddress: '布施3841−337',
     addressCountry: 'JP',
   },
-  sameAs: ['https://www.instagram.com/tora6772/', 'https://riderhousetoranoana.jimdosite.com/'],
+  checkinTime: '16:00',
+  checkoutTime: '10:00',
+  numberOfRooms: 2,
+  sameAs: [
+    'https://www.instagram.com/tora6772/',
+    'https://riderhousetoranoana.jimdosite.com/',
+  ],
 })} />

@@ -1,11 +1,25 @@
 ---
+import { Image } from 'astro:assets';
+import heroImage from '../assets/images/hero.png';
+
 const headlineTop = Array.from('走った先に、');
 const headlineBottom = Array.from('帰れる場所を。');
 ---
 
 <section class="hero" id="top" aria-labelledby="hero-title">
   <div class="hero__media-wrap">
-    <img class="hero__media js-hero-image" src="/images/hero.png" alt="緑の外壁が印象的な佐久ライダーハウス虎の穴とバイク" width="750" height="562" fetchpriority="high" />
+    <Image
+      class="hero__media js-hero-image"
+      src={heroImage}
+      alt="緑の外壁が印象的な佐久ライダーハウス虎の穴とバイク"
+      widths={[720, 1080, 1440, 1920]}
+      sizes="100vw"
+      format="webp"
+      quality={78}
+      fetchpriority="high"
+      loading="eager"
+      decoding="async"
+    />
   </div>
   <div class="hero__shade"></div>
   <div class="hero__content container">

@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import hero02Image from '../assets/images/hero02.png';
+
 const info = [
   { label: '施設名', value: '佐久ライダーハウス虎の穴' },
   { label: '住所', value: '〒384-2203 長野県佐久市布施3841−337' },
@@ -13,7 +16,19 @@ const info = [
 <section class="info section-shell" id="info" aria-labelledby="info-title">
   <div class="info__inner container">
     <div class="info__visual js-reveal">
-      <div class="info__image-wrap js-parallax-wrap"><img class="info__image js-parallax" src="/images/hero02.png" alt="佐久ライダーハウス虎の穴の外観" width="750" height="562" loading="lazy" /></div>
+      <div class="info__image-wrap js-parallax-wrap">
+        <Image
+          class="info__image js-parallax"
+          src={hero02Image}
+          alt="佐久ライダーハウス虎の穴の外観"
+          widths={[480, 720, 960, 1200]}
+          sizes="(max-width: 767px) 100vw, 42vw"
+          format="webp"
+          quality={78}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
       <p class="info__image-note">SAKU RIDER HOUSE<br />TORA NO ANA</p>
     </div>
     <div class="info__content js-reveal">

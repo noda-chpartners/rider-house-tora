@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logoImage from '../assets/images/logo.png';
+
 const navigation = [
   { href: '#about', label: '虎の穴について' },
   { href: '#stay', label: '宿泊料金' },
@@ -10,7 +13,17 @@ const navigation = [
 <header class="header js-header">
   <div class="header__inner">
     <a class="header__brand" href="#top" aria-label="ページ上部へ戻る">
-      <img class="header__logo" src="/images/logo.png" alt="佐久ライダーハウス虎の穴" width="400" height="400" />
+      <Image
+        class="header__logo"
+        src={logoImage}
+        alt="佐久ライダーハウス虎の穴"
+        width={136}
+        height={136}
+        format="webp"
+        quality={85}
+        loading="eager"
+        decoding="async"
+      />
     </a>
     <nav class="header__nav" aria-label="メインナビゲーション">
       {navigation.map((item) => <a class="header__nav-link" href={item.href}>{item.label}</a>)}

@@ -1,11 +1,19 @@
 ---
+import { Image } from 'astro:assets';
+import room01 from '../assets/images/room01.png';
+import riders01 from '../assets/images/riders01.png';
+import tento from '../assets/images/tento.png';
+import setubi from '../assets/images/setubi.png';
+import room05 from '../assets/images/room05.png';
+import riders03 from '../assets/images/riders03.png';
+
 const photos = [
-  { src: '/images/room01.png', alt: '布団が並ぶ客室', label: 'ROOM' },
-  { src: '/images/riders01.png', alt: '宿の前に集まったライダーとバイク', label: 'RIDERS' },
-  { src: '/images/tento.png', alt: '林の中に張られたオレンジ色のテント', label: 'CAMP' },
-  { src: '/images/setubi.png', alt: '館内の設備', label: 'HOUSE' },
-  { src: '/images/room05.png', alt: '窓のある客室', label: 'ROOM' },
-  { src: '/images/riders03.png', alt: '虎の穴を訪れたライダーたち', label: 'MEMORIES' },
+  { src: room01, alt: '布団が並ぶ客室', label: 'ROOM' },
+  { src: riders01, alt: '宿の前に集まったライダーとバイク', label: 'RIDERS' },
+  { src: tento, alt: '林の中に張られたオレンジ色のテント', label: 'CAMP' },
+  { src: setubi, alt: '館内の設備', label: 'HOUSE' },
+  { src: room05, alt: '窓のある客室', label: 'ROOM' },
+  { src: riders03, alt: '虎の穴を訪れたライダーたち', label: 'MEMORIES' },
 ];
 ---
 
@@ -18,7 +26,19 @@ const photos = [
     <div class="gallery__rail js-gallery-rail">
       {photos.map((photo) => (
         <figure class="gallery-card">
-          <div class="gallery-card__image-wrap"><img class="gallery-card__image" src={photo.src} alt={photo.alt} width="750" height="562" loading="eager" decoding="async" /></div>
+          <div class="gallery-card__image-wrap">
+            <Image
+              class="gallery-card__image"
+              src={photo.src}
+              alt={photo.alt}
+              widths={[400, 640, 800]}
+              sizes="(max-width: 767px) 78vw, 26vw"
+              format="webp"
+              quality={78}
+              loading="eager"
+              decoding="async"
+            />
+          </div>
           <figcaption class="gallery-card__caption"><span class="gallery-card__label">{photo.label}</span><span class="gallery-card__line"></span></figcaption>
         </figure>
       ))}
